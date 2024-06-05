@@ -49,7 +49,7 @@ const Login = () => {
                   localStorage.setItem('user', JSON.stringify(cred));
 
                   const { name, sub, picture } = cred;
-                  console.log(sub);
+                  console.log(JSON.stringify(cred));
 
                   // creates a sanity doc of the user
                   const doc = {
@@ -59,25 +59,10 @@ const Login = () => {
                     image: picture,
                   }
 
-                //   const client = createClient({
-                //     projectId: "fbyfchau",
-                //     dataset: "production",
-                //     useCdn: true,
-                //     apiVersion: "2024-06-03",
-                //     token: process.env.REACT_APP_SANITY_SECRET_TOKEN
-                // });
 
                   console.log(process.env.REACT_APP_SANITY_PROJECT_ID)
 
 
-                  // const query = '*[_type == "user"]';
-
-                  // // Fetch data
-                  // client.fetch(query)
-                  //   .then(data => {
-                  //     console.log('Fetched data:', data);
-                  //     // Do something with the fetched data
-                  //   })
                     client.createIfNotExists(doc)
                     .then(() =>{
                       navigate("/", {replace: true})
