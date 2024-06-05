@@ -8,10 +8,10 @@ import { client } from '../client';
 import Logo from "../assets/Logo.png";
 import Pins from '../components/Pins';
 import { userQuery } from '../utils/data';
-
+import { fetchUser } from '../utils/fetchUser';
 const Home = () => {
   const userString = localStorage.getItem('user');
-  const userInfo = userString ? JSON.parse(userString) : null;
+  const userInfo = fetchUser();
   // console.log(localStorage.getItem('user'));
 
 
