@@ -8,12 +8,12 @@ import { BsFillArrowUpRightCircleFill } from 'react-icons/bs'
 import { fetchUser } from '../utils/fetchUser';
 import { client } from '../client';
 
-const Pin = ({ key, pin: { postedBY : postedBy, image, _id, destination, save } }) => {
+const Pin = ({ key, pin: { postedBy, image, _id, destination, save } }) => {
     const [postHover, setPostHover] = useState(false);
 
     const userInfo = fetchUser();
 
-    const alreadySaved = !!(save?.filter((item) => item.postedBy._id === userInfo.sub))?.length;
+    const alreadySaved = (save?.filter((item) => item.postedBy._id === userInfo.sub))?.length > 0;
 
     const savePin = (_id) => {
         if (!alreadySaved) {
@@ -88,9 +88,6 @@ const Pin = ({ key, pin: { postedBY : postedBy, image, _id, destination, save } 
 
 
 
-
-                            {console.log(postedBy?._id)}
-                            {console.log(userInfo.sub)}
                             {postedBy?._id === userInfo.sub && (
                                 <button
                                     type='button'

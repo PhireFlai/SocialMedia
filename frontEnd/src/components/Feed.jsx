@@ -9,9 +9,10 @@ const Feed = () => {
   const [loading, setLoading] = useState(false);
   const [pins, setPins] = useState([]);
   const { categoryId } = useParams();
-
+  
 
   useEffect(() => {
+    console.log(categoryId);
     setLoading(true);
     if(categoryId){
       const query = searchQuery(categoryId);
@@ -32,8 +33,9 @@ const Feed = () => {
 
   if (loading) return <Spinner message="Searching For Fresh Content!" />
   return (
+    
     <div>
-      {/* {console.log(pins)} */}
+      {console.log(pins)}
       {pins && <MasonryLayout pins={pins} />}
       
     </div>
