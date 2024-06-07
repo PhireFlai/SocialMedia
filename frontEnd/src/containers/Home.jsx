@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link, Route, Routes } from 'react-router-dom'
+import { Link, Route, Routes, useNavigate } from 'react-router-dom'
 import { HiMenu } from 'react-icons/hi';
 import { AiFillCloseCircle } from 'react-icons/ai';
 
@@ -9,10 +9,17 @@ import Logo from "../assets/Logo.png";
 import Pins from '../components/Pins';
 import { userQuery } from '../utils/data';
 import { fetchUser } from '../utils/fetchUser';
+
+import { Navigate } from 'react-router-dom';
 const Home = () => {
-  const userString = localStorage.getItem('user');
+
   const userInfo = fetchUser();
   // console.log(localStorage.getItem('user'));
+  const navigate = useNavigate();
+
+  if (!userInfo) {
+    navigate('/login')
+  }
 
 
   const [toggleSidebar, setToggleSidebar] = useState(false);
@@ -38,9 +45,9 @@ const Home = () => {
   return (
 
 
-  
+
     <div className='flex bg-gray-50 md:flex-row flex-col h-screen transaction-height duration-75 ease-out'>
-       {/* desktop sidebar */}
+      {/* desktop sidebar */}
       <div className='hidden md:flex h-screen, flex-initial'>
         <Sidebar user={user && user} />
       </div>
@@ -55,7 +62,7 @@ const Home = () => {
           </Link>
 
           <Link to={`user-profile/${user?._id}`}>
-            <img src={user?.image} alt='logo' className='w-28' />
+            <img src={user?.image} alt='logo' className='w-20 rounded-full' />
           </Link>
         </div>
 

@@ -32,10 +32,11 @@ const Feed = () => {
   }, [categoryId])
 
   if (loading) return <Spinner message="Searching For Fresh Content!" />
+  if (!pins?.length) return <h2 className='text-center justify-center items-center font-bold text-2xl mt-10'>No Pins for this Category Yet!</h2>
   return (
     
     <div>
-      {console.log(pins)}
+      {/* {console.log(pins)} */}
       {pins && <MasonryLayout pins={pins} />}
       
     </div>

@@ -46,7 +46,7 @@ const Pin = ({ key, pin: { postedBy, image, _id, destination, save } }) => {
             <div
                 onMouseLeave={() => setPostHover(false)}
                 onMouseEnter={() => setPostHover(true)}
-                onClick={() => navigate(`/pin-detail/${_id}`)}
+                onClick={() => navigate(`/pin-info/${_id}`)}
 
                 // this allows downloads
                 className='relative cursor-zoom-in w-auto hover:shadow-lg rounded-lg overflow-hidden transition-all duration-500 ease-in-out'>
@@ -108,14 +108,21 @@ const Pin = ({ key, pin: { postedBy, image, _id, destination, save } }) => {
 
             <Link to={`user-profile/${postedBy?._id}`} className='flex gap-2 mt-2 items-center'>
                 <img
-                src={postedBy?.image}
-                className='w-8 h-8 rounded-full object-cover' />
+                    src={postedBy?.image}
+                    className='w-8 h-8 rounded-full object-cover' />
                 <p className='font-semibold capitalize'>{postedBy?.userName}</p>
+
             </Link>
 
         </div>
 
+
+
     )
 }
+
+
+
+
 
 export default Pin

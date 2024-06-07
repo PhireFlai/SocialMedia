@@ -29,18 +29,18 @@ const Sidebar = ({ user, closeToggle }) => {
                     className={({ isActive }) => isActive ? isActiveStyle : notActiveStyle}
                     onClick={handleCloseToggle}
                 >
-                    <RiHomeFill />
+                    <RiHomeFill className='w-8 h-8'/>
                     Home
                 </NavLink>
                 
-                {categories.slice(0, categories.length - 1).map((category) => (
+                {categories.slice(0, categories.length).map((category) => (
                     <NavLink
                         to={`/category/${category.name}`}
                         className={({ isActive }) => isActive ? isActiveStyle : notActiveStyle}
                         onClick={handleCloseToggle}
                         key={category.name}
                     >
-                        <img src={category.image} className='w-6 h-6 rounded-full'>
+                        <img src={category.image} className='w-8 h-8 rounded-full' alt='categories'>
                         </img>
                         {category.name}
                     </NavLink>

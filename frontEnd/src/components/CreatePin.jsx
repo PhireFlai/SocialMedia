@@ -24,7 +24,7 @@ const CreatePin = ({ user }) => {
 
   const uploadImage = (e) => {
     const { type, name } = e.target.files[0];
-    if (type === 'image/png' || type === 'image/svg' || type === 'image/jpeg' || type === 'image/jpg' || type === 'image/gif' || type === 'image/tiff') {
+    if (type === 'image/png' || type === 'image/svg' || type === 'image/jpeg' || type === 'image/jpg' || type === 'image/gif' || type === 'image/tiff' || type === 'image/webp') {
       setWrongImageType(false);
       setLoading(true);
       client.assets.upload(
@@ -172,7 +172,7 @@ const CreatePin = ({ user }) => {
           {user && (
             <div className=' flex gap my-2 items-center bg-white rounded-lg'>
               <img src={user.image}
-                className='w-10 h-10 rounded-sfull
+                className='w-10 h-10 rounded-full
               '
                 alt='user Profile'
               />
