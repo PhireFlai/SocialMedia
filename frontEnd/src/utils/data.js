@@ -111,7 +111,7 @@ export const debugQuery = `*[_type == "pin" && defined(postedBy)]{
     const query = `*[_type == "pin" && category == $category && _id != $pinId]{
       image{
         asset->{
-          s
+          url
         }
       },
       _id,
@@ -133,8 +133,7 @@ export const debugQuery = `*[_type == "pin" && defined(postedBy)]{
    
     
     const params = { category: pin.category, pinId: pin._id };
-    console.log(params);
-    console.log(query);
+
     return { query, params };
   };
   

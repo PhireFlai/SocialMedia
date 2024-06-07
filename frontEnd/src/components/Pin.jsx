@@ -8,7 +8,7 @@ import { BsFillArrowUpRightCircleFill } from 'react-icons/bs'
 import { fetchUser } from '../utils/fetchUser';
 import { client } from '../client';
 
-const Pin = ({ key, pin: { postedBy, image, _id, destination, save } }) => {
+const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
     const [postHover, setPostHover] = useState(false);
 
     const userInfo = fetchUser();
@@ -102,8 +102,8 @@ const Pin = ({ key, pin: { postedBy, image, _id, destination, save } }) => {
                             )}
                         </div>
                     </div>)}
-
-                <img className='rounded-lg w-full' alt='user post' src={urlFor(image).width(250).url()} />
+                    {/* {console.log(image)}; */}
+                <img className='rounded-lg w-full' alt='user post' src={urlFor(image).width(250).url()}  />
             </div>
 
             <Link to={`user-profile/${postedBy?._id}`} className='flex gap-2 mt-2 items-center'>

@@ -49,7 +49,7 @@ const Login = () => {
                   localStorage.setItem('user', JSON.stringify(cred));
 
                   const { name, sub, picture } = cred;
-                  console.log(JSON.stringify(cred));
+                  // console.log(JSON.stringify(cred));
 
                   // creates a sanity doc of the user
                   const doc = {
@@ -60,7 +60,7 @@ const Login = () => {
                   }
 
 
-                  console.log(process.env.REACT_APP_SANITY_PROJECT_ID)
+                  // console.log(process.env.REACT_APP_SANITY_PROJECT_ID)
 
 
                     client.createIfNotExists(doc)

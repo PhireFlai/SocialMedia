@@ -19,7 +19,7 @@ const CreatePin = ({ user }) => {
   const [imageAsset, setImageAsset] = useState(null);
   const [wrongImageType, setWrongImageType] = useState(false);
   const [loading, setLoading] = useState(false);
-
+  const [saving, setSaving] = useState(false);
   const navigate = useNavigate();
 
   const uploadImage = (e) => {
@@ -44,7 +44,8 @@ const CreatePin = ({ user }) => {
   }
 
   const savePin = () => {
-    if (title && about && destination && imageAsset?._id && category) {
+    if (!saving && title && about && destination && imageAsset?._id && category) {
+      setSaving(true);
       const doc = {
         _type: 'pin',
         title,
@@ -54,7 +55,7 @@ const CreatePin = ({ user }) => {
           _type: 'image',
           asset: {
             _type: 'reference',
-            _ref: imageAsset._id,
+            _ref: imageAsset?._id,
             // url: imageAsset?.url,
           }
         },
@@ -68,7 +69,8 @@ const CreatePin = ({ user }) => {
       }
       client.create(doc)
         .then(() => {
-          navigate("/")
+          setSaving(false);
+          navigate("/");
         });
     }
     else {
