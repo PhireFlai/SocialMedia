@@ -29,8 +29,8 @@ const Home = () => {
 
 
   useEffect(() => {
-    const query = userQuery(userInfo?.sub);
-    client.fetch(query)
+    const {query, params} = userQuery(userInfo?.sub);
+    client.fetch(query, params)
       .then((data) => {
         setUser(data[0]);
         // console.log(user);

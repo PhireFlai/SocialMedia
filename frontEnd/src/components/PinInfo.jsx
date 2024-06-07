@@ -21,16 +21,17 @@ const PinInfo = ({ user }) => {
 
 
   const fetchPinDetails = () => {
-    console.log("Running a fetch")
-    const query = pinDetailQuery(pinId);
+    
+    const { query, params } = pinDetailQuery(pinId);
 
     if (query) {
-      client.fetch(query).then((data) => {
+      client.fetch(query, params).then((data) => {
         setPinDetail(data[0]);
-        console.log(data);
+        
         if (data[0]) {
-          const query1 = pinDetailMorePinQuery(data[0]);
-          client.fetch(query1).then((res) => {
+          const { query, params } = pinDetailMorePinQuery(data[0]);
+          console.log(query);
+          client.fetch(query, params).then((res) => {
             setPins(res);
           });
         }
@@ -69,117 +70,117 @@ const PinInfo = ({ user }) => {
 
   if (!pinDetail) return <Spinner message='loading Pin' />
   return (
-    
-      <div className='flex flex-col xl:flex-row m-auto bg-white' style={{ maxWidth: '1500px', borderRadius: '32px' }}>
 
-        <div className='flex justify-center items-center md:items-start flex-initial'>
-          <img src={pinDetail?.image && urlFor(pinDetail.image).url()} className='rounded-3xl' />
-        </div>
+    <div className='flex flex-col xl:flex-row m-auto bg-white' style={{ maxWidth: '1500px', borderRadius: '32px' }}>
 
-        <div className=' w-full p-5 flex-1 xl:min-w-620'>
+      <div className='flex justify-center items-center md:items-start flex-initial'>
+        <img src={pinDetail?.image && urlFor(pinDetail.image).url()} className='rounded-3xl' />
+      </div>
 
-          <div className=' flex justify-between items-center '>
+      <div className=' w-full p-5 flex-1 xl:min-w-620'>
 
-            <div className='flex gap-2 items-center '>
+        <div className=' flex justify-between items-center '>
 
-              <a href={`${pinDetail.image.asset.url}?dl=`}
-                download
-                onClick={(e) => e.stopPropagation()}>
-                <MdDownloadForOffline className='bg-white w-9 h-9 rounded-full flex items-center justify-center text-dark text-xl bg-opacity-50 hover:shadow-md hover:bg-opacity-100' />
-              </a>
+          <div className='flex gap-2 items-center '>
 
-            </div>
-
-            <a
-              href={pinDetail.destination}
-              target="_blank"
-              rel="noreferrer"
-              className='bg-white flex items-center gap-2 text-black font-bold p-2 px-4 rounded-lg opacity-80 hover:opacity-100 hover:shadow-md break-all'>
-              {pinDetail.destination}
+            <a href={`${pinDetail.image.asset.url}?dl=`}
+              download
+              onClick={(e) => e.stopPropagation()}>
+              <MdDownloadForOffline className='bg-white w-9 h-9 rounded-full flex items-center justify-center text-dark text-xl bg-opacity-50 hover:shadow-md hover:bg-opacity-100' />
             </a>
 
           </div>
 
-          <div>
-            <h1 className='text-3xl font-bold break-words mt-3'>
-              {pinDetail.title}
-            </h1>
+          <a
+            href={pinDetail.destination}
+            target="_blank"
+            rel="noreferrer"
+            className='bg-white flex items-center gap-2 text-black font-bold p-2 px-4 rounded-lg opacity-80 hover:opacity-100 hover:shadow-md break-all'>
+            {pinDetail.destination}
+          </a>
 
-            <p className='mt-4'>
-              {pinDetail.info}
+        </div>
 
-            </p>
+        <div>
+          <h1 className='text-3xl font-bold break-words mt-3'>
+            {pinDetail.title}
+          </h1>
+
+          <p className='mt-4'>
+            {pinDetail.info}
+
+          </p>
 
 
-            <Link to={`user-profile/${pinDetail.postedBy?._id}`} className='flex gap-2 mt-4 ml-auto items-center'>
+          <Link to={`user-profile/${pinDetail.postedBy?._id}`} className='flex gap-2 mt-4 ml-auto items-center'>
+            <img
+              src={pinDetail.postedBy?.image}
+              className='w-8 h-8 rounded-full object-cover' />
+            <p className='font-semibold capitalize'>{pinDetail.postedBy?.userName}</p>
+          </Link>
+
+          <div className='flex flex-wrap mt-6 gap-3'>
+            <Link to={`user-profile/${pinDetail.postedBy?._id}`} className='flex ml-auto items-center'>
               <img
                 src={pinDetail.postedBy?.image}
-                className='w-8 h-8 rounded-full object-cover' />
-              <p className='font-semibold capitalize'>{pinDetail.postedBy?.userName}</p>
+                className='w-10 h-10 rounded-full object-cover' />
+
             </Link>
 
-            <div className='flex flex-wrap mt-6 gap-3'>
-              <Link to={`user-profile/${pinDetail.postedBy?._id}`} className='flex ml-auto items-center'>
-                <img
-                  src={pinDetail.postedBy?.image}
-                  className='w-10 h-10 rounded-full object-cover' />
+            <input
+              type='text'
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+              placeholder='Comment Here'
+              className='flex-1 border-gray-100 outline-none border-2 p-3 rounded-2xl focus:border-gray-500'>
+            </input>
 
-              </Link>
+            <button
+              onClick={addComment}
+              type="button"
+              className=' bg-gray-300 rounded-xl text-white px-6 py-2 font-semibold text-base outline-none'>
+              {addingComment ? 'posting Comment' : "Post"}
 
-              <input
-                type='text'
-                value={comment}
-                onChange={(e) => setComment(e.target.value)}
-                placeholder='Comment Here'
-                className='flex-1 border-gray-100 outline-none border-2 p-3 rounded-2xl focus:border-gray-500'>
-              </input>
-
-              <button
-                onClick={addComment}
-                type="button"
-                className=' bg-gray-300 rounded-xl text-white px-6 py-2 font-semibold text-base outline-none'>
-                {addingComment ? 'posting Comment' : "Post"}
-
-              </button>
-
-            </div>
-
-            <h2 className='mt-8 text-2xl'>
-              Comments
-            </h2>
-            <div className='max-h-370 overflow-y-auto'>
-
-              {pinDetail?.comments?.map((comment, i) => (
-                <div className='flex gap-2 mt-5 items-center bg-white rounded-lg' key={i}>
-
-                  <img src={comment.postedBy.image}
-                    alt='posted profile'
-                    className='w-10 h-10 rounded-full cursor-pointer ' />
-
-                  <div className='flex flex-col'>
-
-                    <p className="font-bold">
-                      {comment?.postedBy?.userName}
-                    </p>
-
-                    <p>
-                      {comment.comment}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-
+            </button>
 
           </div>
+
+          <h2 className='mt-8 text-2xl'>
+            Comments
+          </h2>
+          <div className='max-h-370 overflow-y-auto'>
+
+            {pinDetail?.comments?.map((comment, i) => (
+              <div className='flex gap-2 mt-5 items-center bg-white rounded-lg' key={i}>
+
+                <img src={comment.postedBy.image}
+                  alt='posted profile'
+                  className='w-10 h-10 rounded-full cursor-pointer ' />
+
+                <div className='flex flex-col'>
+
+                  <p className="font-bold">
+                    {comment?.postedBy?.userName}
+                  </p>
+
+                  <p>
+                    {comment.comment}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
 
 
         </div>
 
-{console.log(pins)}
-        {
-          
+
+      </div>
+
+
+      {
+
         pins?.length ? (
           <>
             <h2 className="text-center font-bold text-2xl mt-8 mb-4">
@@ -193,9 +194,9 @@ const PinInfo = ({ user }) => {
             <Spinner message="Loading more pins" className="mt-8" />
           )
       }
-      </div>
+    </div>
 
-    
+
 
   )
 }

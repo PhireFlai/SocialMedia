@@ -15,9 +15,9 @@ const Search = ({ searchTerm }) => {
   useEffect(() => {
     if (searchTerm) {
       setLoading(true);
-      const query = searchQuery(searchTerm.toLowerCase());
+      const {query, params} = searchQuery(searchTerm.toLowerCase());
 
-      client.fetch(query)
+      client.fetch(query, params)
         .then((data) => {
           setPins(data);
           setLoading(false);
