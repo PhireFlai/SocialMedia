@@ -7,7 +7,7 @@ export const userQuery = (userId) => {
 
 
 export const searchQuery = (searchTerm) => {
-  const query = `*[_type == "pin" && (title match $searchTerm || category match $searchTerm || info match $searchTerm)]{
+  const query = `*[_type == "pin" && (title match $searchTerm || category match $searchTerm || info match $searchTerm || postedBy->userName match $searchTerm)]{
     image{
       asset->{
         url
@@ -111,7 +111,7 @@ export const debugQuery = `*[_type == "pin" && defined(postedBy)]{
     const query = `*[_type == "pin" && category == $category && _id != $pinId]{
       image{
         asset->{
-          url
+          s
         }
       },
       _id,

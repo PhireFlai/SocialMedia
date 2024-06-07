@@ -1,5 +1,5 @@
 export {default as Sidebar} from "./Sidebar"
-export {default as Login} from "./Login"
+export {default as Login} from "../containers/Login"
 export {default as UserProfile} from "./UserProfile"
 export {default as NavBar} from "./NavBar"
 export {default as Search} from "./Search"

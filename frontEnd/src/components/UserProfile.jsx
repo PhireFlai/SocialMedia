@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { AiOutlineLogout } from 'react-icons/ai'
 import { useParams, useNavigate } from 'react-router-dom'
-import { googleLogout } from '@react-oauth/google'
+
 
 
 import { userQuery, userSavedPinsQuery, userCreatedPinsQuery } from '../utils/data'
@@ -40,17 +40,17 @@ const UserProfile = () => {
 
   useEffect(() => {
     if (text === 'Created') {
-      const { createdPinQuery, params } = userCreatedPinsQuery(userId)
+      const { query, params } = userCreatedPinsQuery(userId)
 
-      client.fetch(createdPinQuery, params)
+      client.fetch(query, params)
         .then((data) => {
 
           setPins(data);
         })
     } else {
-      const { savedPinsQuery, params } = userSavedPinsQuery(userId)
+      const { query, params } = userSavedPinsQuery(userId)
 
-      client.fetch(savedPinsQuery, params)
+      client.fetch(query, params)
         .then((data) => {
           setPins(data);
         })
