@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/phireflai.github.io/SocialMedia/static/css/main.261a4db0.css",
-    "main.js": "/phireflai.github.io/SocialMedia/static/js/main.1e5040b6.js",
-    "static/js/796.3fd763fc.chunk.js": "/phireflai.github.io/SocialMedia/static/js/796.3fd763fc.chunk.js",
-    "static/js/165.cfe9edc5.chunk.js": "/phireflai.github.io/SocialMedia/static/js/165.cfe9edc5.chunk.js",
+    "main.js": "/phireflai.github.io/SocialMedia/static/js/main.ea049ce1.js",
+    "static/js/796.84c775ea.chunk.js": "/phireflai.github.io/SocialMedia/static/js/796.84c775ea.chunk.js",
+    "static/js/165.a7d66163.chunk.js": "/phireflai.github.io/SocialMedia/static/js/165.a7d66163.chunk.js",
     "static/media/LoginVideo.mp4": "/phireflai.github.io/SocialMedia/static/media/LoginVideo.71378d85ac2fcfe11615.mp4",
     "static/media/Animal.jpg": "/phireflai.github.io/SocialMedia/static/media/Animal.ff5f6a05201b25b8d386.jpg",
     "static/media/Logo.png": "/phireflai.github.io/SocialMedia/static/media/Logo.15d26876751dd03c1733.png",
     "index.html": "/phireflai.github.io/SocialMedia/index.html",
     "main.261a4db0.css.map": "/phireflai.github.io/SocialMedia/static/css/main.261a4db0.css.map",
-    "main.1e5040b6.js.map": "/phireflai.github.io/SocialMedia/static/js/main.1e5040b6.js.map",
-    "796.3fd763fc.chunk.js.map": "/phireflai.github.io/SocialMedia/static/js/796.3fd763fc.chunk.js.map",
-    "165.cfe9edc5.chunk.js.map": "/phireflai.github.io/SocialMedia/static/js/165.cfe9edc5.chunk.js.map"
+    "main.ea049ce1.js.map": "/phireflai.github.io/SocialMedia/static/js/main.ea049ce1.js.map",
+    "796.84c775ea.chunk.js.map": "/phireflai.github.io/SocialMedia/static/js/796.84c775ea.chunk.js.map",
+    "165.a7d66163.chunk.js.map": "/phireflai.github.io/SocialMedia/static/js/165.a7d66163.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.261a4db0.css",
-    "static/js/main.1e5040b6.js"
+    "static/js/main.ea049ce1.js"
   ]
 }
